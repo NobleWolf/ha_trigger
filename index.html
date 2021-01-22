@@ -1,3 +1,29 @@
-<h1>hiya</h1>
-<p>a new paragraph</p>
-<p>a secondparagraph</p>
+<!DOCTYPE html>
+            
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+	<script type="text/javascript" 
+            src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js">
+    </script>
+	<script type="text/javascript">
+        $(document).ready(function () {
+			
+		 $('#ajaxBtn').click(function(){
+			
+			$.post('https://hooks.nabu.casa/gAAAAABgCvHpRTs--U4tYPRz4btMqgmcEhSC2E6fDCN1tC5ttK-8dycOojy7Xur6Dzk2Te7bklnW-fH5bdVEMnVYqlmvoIfU4_TgygcpL-wOQLn5as6sV3ByNm1d176yVyCck6s9Jo07JZZtt7SeZlJQc65oc0DtNP9DgZjAxhdh-SK0hjrO8OY=',   // url
+			   { myData: '' }, // data to be submit
+			   function(data, status, jqXHR) {// success callback
+						$('p').append('status: ' + status + ', data: ' + data);
+				});
+			});
+    });
+    </script>
+</head>
+<body>
+	<h1>Turn on/off Josh's lamp</h1>
+	<input type="button" id="ajaxBtn" value="Tap this to toggle the lamp" />
+	<p>
+	</p>
+</body>
+</html>
