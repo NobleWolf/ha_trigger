@@ -88,13 +88,13 @@
         <ul>
           <li><a href="https://home-assistant.io/">Home Assistant</a>, this is an open source home automation tool with over 1700 <a href="https://www.home-assistant.io/integrations/">integrations</a>.</li>
           <ul>
-            <li>In addition to this light toggle trick, I built my own home security system, a garage door opener, a morning reminder to shovel snow if it snows overnight, and many other things.</li>
+            <li>In addition to this bulb toggle trick, I built my own home security system, a garage door opener, a morning reminder to shovel snow if it snows overnight, and many other things.</li>
             <li>You can <a href="https://www.home-assistant.io/cookbook/">do anything</a> from monitor plant health to help your kids <a href="https://community.home-assistant.io/t/wake-up-light-alarm-with-sunrise-effect/255193">wake up on time</a>, or even <a href="https://www.youtube.com/watch?v=OgDABg0BptM">not get out of bed early</a>.</li>
           </ul>
           <li><a href="https://www.nabucasa.com/">Nabu Casa</a>, this allows encrypted external access to Home Assistant (though I could set it up manually), and proceeds supports the Home Assistant development team.</li>
           <li>A <a href="https://pages.github.com/">github.io page</a>, this is where you are at. Github offers free basic web pages for personal projects like this.</li>
           <li>A smart bulb, I used a Merkury brand bulb with an ESP8266 WiFi chip which allowed me to replace the manufacturers firmware with an opensource firmware called <a href="https://tasmota.github.io/docs/About/">Tasmota</a>.</li>
-          <li>Tasmota allows local network only control (instead of cloud control that the light comes with) for my device.</li>
+          <li>Tasmota allows local network only control (instead of cloud control that the bulb comes with) for my device.</li>
         </ul>
       </p>
     </div>
@@ -103,16 +103,16 @@
       </p>
       <ol>
         <li>You scan the QR code and load this page. You tap the toggle button.</li>
-        <li>The toggle button (which is a form created with <a href="https://jquery.com/">jQuery</a>) sends a <i>POST</i> (with no additional information) to the site hosted by Nabu Casa. The URL behind the toggle button the is unique.</li>
-        <li>Nabu Casa receives the <i>POST</i> request to the unique URL and maps that to my account, my instance, and a different unique identifier for this specific URL.</li>
+        <li>The toggle button (which is a form created with <a href="https://jquery.com/">jQuery</a>) sends a <i>POST</i> (with no additional information) to the site hosted by Nabu Casa. The URL behind the toggle button is unique.</li>
+        <li>Nabu Casa receives the <i>POST</i> request to the unique URL and maps that to my account, my instance, and a different unique identifier specific to this URL.</li>
         <li>Nabu Casa then authenticates with my local Home Assistant instance and sends a webhook event and the unique identifier.</li>
         <li>Home Assistant sees this event and <a href="https://www.home-assistant.io/docs/automation/trigger/#webhook-trigger">triggers an automation</a>.</li>
         <li>The automation then calls a service to <a href="https://www.home-assistant.io/integrations/light/#service-lighttoggle">toggle the light</a>.</li>
-        <li>The service see the light is connected by a local <a href="https://www.home-assistant.io/integrations/mqtt">MQTT</a> broker running in a <a href="https://www.docker.com/resources/what-container">docker container</a>. (MQTT is an IoT broker between different technologies via TCP/IP, and in this case over WiFi.)</li>
-        <li>The MQTT server maps the light name to an its IP address.</li>
-        <li>The MQTT server sends a MQTT light toggle message to the bulb.</li>
+        <li>The service sees the bulb is connected via a local <a href="https://www.home-assistant.io/integrations/mqtt">MQTT</a> broker running in a <a href="https://www.docker.com/resources/what-container">docker container</a>. (MQTT is an IoT broker between different technologies via TCP/IP, and in this case over WiFi.)</li>
+        <li>The MQTT broker maps the bulb's name to its IP address.</li>
+        <li>The MQTT broker sends a MQTT light toggle message to the bulb.</li>
         <li>The bulb turns on/off.</li>
-        <li>I see the light toggle and smile because I know it still works.</li>
+        <li>I see the bulb toggle and smile because I know it still works.</li>
       </ol>
       </p>
     </div>
